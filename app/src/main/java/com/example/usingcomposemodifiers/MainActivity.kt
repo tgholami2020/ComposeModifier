@@ -1,19 +1,21 @@
 package com.example.usingcomposemodifiers
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Checkbox
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,9 +42,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Note()
+                    MyNote()
                 }
             }
+        }
+    }
+}
+@Composable
+fun MyNote(){
+    LazyColumn(){
+        items((1..20).toList()){
+            Note()
         }
     }
 }
@@ -73,7 +83,7 @@ fun Note(){
                 text = "Title",
                 maxLines = 1,
                 color = Color.Black,
-                style = TextStyle(                         //styling the text
+                style = TextStyle(                           //styling the text
                     fontWeight = FontWeight.Normal,
                     fontSize = 16.sp,
                     letterSpacing = 0.15.sp)
@@ -82,7 +92,7 @@ fun Note(){
                 text = "Content",
                 color=Color.Black.copy(alpha = 0.75f),
                 maxLines = 1,
-                style = TextStyle(                         //styling the text
+                style = TextStyle(                           //styling the text
                     fontWeight = FontWeight.Normal,
                     fontSize = 16.sp,
                     letterSpacing = 0.25.sp
@@ -118,7 +128,6 @@ fun NoteColor(
         ) {
     }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
